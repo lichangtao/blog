@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>博雅楼 - 后台管理</title>
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="/images/favicon.ico" />
+
+    <!-- basic styles -->
+
+    <link href="/assets/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/assets/css/font-awesome.min.css" />
+    <link rel="stylesheet" type="text/css" href="/layer/layui/css/layui.css"  media="all" />
+
+    <!--[if IE 7]>
+    <link rel="stylesheet" href="/assets/css/font-awesome-ie7.min.css" />
+    <![endif]-->
+
+    <!-- page specific plugin styles -->
+
+    <link rel="stylesheet" href="/assets/css/personal.css" />
+
+    <!-- fonts -->
+
+
+    <!-- ace styles -->
+
+    <link rel="stylesheet" href="/assets/css/ace.min.css" />
+    <link rel="stylesheet" href="/assets/css/ace-rtl.min.css" />
+    <link rel="stylesheet" href="/assets/css/ace-skins.min.css" />
+
+    <!--[if lte IE 8]>
+    <link rel="stylesheet" href="/assets/css/ace-ie.min.css" />
+    <![endif]-->
+
+    <!-- inline styles related to this page -->
+
+    <!-- ace settings handler -->
+
+    <script src="/assets/js/ace-extra.min.js"></script>
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+
+    <!--[if lt IE 9]>
+    <script src="/assets/js/html5shiv.js"></script>
+    <script src="/assets/js/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+<div class="navbar navbar-default" id="navbar">
+    <script type="text/javascript">
+        try{ace.settings.check('navbar' , 'fixed')}catch(e){}
+    </script>
+
+    <div class="navbar-container" id="navbar-container">
+        <div class="navbar-header pull-left">
+            <a href="/" class="navbar-brand">
+                <small>
+                    <i class="icon-home"></i>
+                    博客首页
+                </small>
+            </a><!-- /.brand -->
+        </div><!-- /.navbar-header -->
+
+        <div class="navbar-header pull-right" role="navigation">
+            <ul class="nav ace-nav">
+
+/`                <li class="light-blue">
+                    <a data-toggle="dropdown" href="#" class="dropdown-toggle">
+                        <% if(user[0]['photo']){%>
+                            <img class="nav-user-photo" src="<%= user[0]['photo'] %>" alt="User Photo" width="40" height="40"/>
+                        <% }else{ %>
+                            <img class="nav-user-photo" src="/images/avatar/1201441.png" alt="User Photo" width="40" height="40" />
+                        <% } %>
+                        <span class="user-info">
+									<small>Welcome,</small>
+                            <%= user[0]['username'] %>
+								</span>
+
+                        <i class="icon-caret-down"></i>
+                    </a>
+
+                    <ul class="user-menu pull-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
+
+                        <li>
+                            <a href="/logout">
+                                <i class="icon-off"></i>
+                                退出
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </ul><!-- /.ace-nav -->
+        </div><!-- /.navbar-header -->
+    </div><!-- /.container -->
+</div>
+
+<div class="main-container" id="main-container">
+    <script type="text/javascript">
+        try{ace.settings.check('main-container' , 'fixed')}catch(e){}
+    </script>
+
+    <div class="main-container-inner">
+        <a class="menu-toggler" id="menu-toggler" href="#">
+            <span class="menu-text"></span>
+        </a>
+
+        <div class="sidebar" id="sidebar">
+            <script type="text/javascript">
+                try{ace.settings.check('sidebar' , 'fixed')}catch(e){}
+            </script>
+
+
+            <ul class="nav nav-list">
+
+                <li>
+                    <a href="/admin" class="dropdown-toggle">
+                        <i class="icon-th-list"></i>
+                        <span class="menu-text"> 个人资料 </span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#" class="dropdown-toggle">
+                        <i class="icon-user"></i>
+                        <span class="menu-text"> 用户管理 </span>
+
+                        <b class="arrow icon-angle-down"></b>
+                    </a>
+
+                    <ul class="submenu">
+                        <li>
+                            <a href="/admin/user">
+                                <i class="icon-double-angle-right"></i>
+                                用户信息
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="/admin/addUser">
+                                <i class="icon-double-angle-right"></i>
+                                添加用户
+                            </a>
+                        </li>
+
+                    </ul>
+                </li>
+
+                <li>
+                    <a href="javascript:void(0)" class="dropdown-toggle">
+                        <i class="icon-file"></i>
+                        <span class="menu-text"> 文章管理 </span>
+
+                        <b class="arrow icon-angle-down"></b>
+                    </a>
+
+                    <ul class="submenu">
+                        <li>
+                            <a href="/admin/articleList">
+                                <i class="icon-double-angle-right"></i>
+                                文章列表
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="/admin/myArticle">
+                                <i class="icon-double-angle-right"></i>
+                                我的文章
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="/admin/addArticle">
+                                <i class="icon-double-angle-right"></i>
+                                发表文章
+                            </a>
+                        </li>
+
+                    </ul>
+                </li>
+
+                <li>
+                    <a href="javascript:void(0)" class="dropdown-toggle">
+                        <i class="icon-comment"></i>
+                        <span class="menu-text"> 评论管理 </span>
+
+                        <b class="arrow icon-angle-down"></b>
+                    </a>
+
+                    <ul class="submenu">
+                        <li>
+                            <a href="/admin/commentList">
+                                <i class="icon-double-angle-right"></i>
+                                评论列表
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="/admin/mycommentList">
+                                <i class="icon-double-angle-right"></i>
+                                我的评论
+                            </a>
+                        </li>
+
+                    </ul>
+                </li>
+
+                <li>
+                    <a href="javascript:void(0)" class="dropdown-toggle">
+                        <i class="icon-th-large"></i>
+                        <span class="menu-text"> 版块管理 </span>
+
+                        <b class="arrow icon-angle-down"></b>
+                    </a>
+
+                    <ul class="submenu">
+                        <li>
+                            <a href="/admin/menu" class="dropdown-toggle">
+                                <i class="icon-plus-sign"></i>
+                                <span class="menu-text"> 添加版块 </span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="/admin/delmenu" class="dropdown-toggle">
+                                <i class="icon-plus-sign"></i>
+                                <span class="menu-text"> 删除版块 </span>
+                            </a>
+                        </li>
+
+                    </ul>
+                </li>
+
+                <li>
+                    <a href="/admin/mypraise" class="dropdown-toggle">
+                        <i class="icon-thumbs-up"></i>
+                        <span class="menu-text"> 点赞记录 </span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="/admin/mycollect" class="dropdown-toggle">
+                        <i class="icon-heart"></i>
+                        <span class="menu-text"> 收藏记录 </span>
+                    </a>
+                </li>
+
+
+
+            </ul><!-- /.nav-list -->
+
+            <div class="sidebar-collapse" id="sidebar-collapse">
+                <i class="icon-double-angle-left" data-icon1="icon-double-angle-left" data-icon2="icon-double-angle-right"></i>
+            </div>
+
+            <script type="text/javascript">
+                try{ace.settings.check('sidebar' , 'collapsed')}catch(e){}
+            </script>
+        </div>
+
+        <div class="main-content">
+            <div class="breadcrumbs" id="breadcrumbs">
+                <script type="text/javascript">
+                    try{ace.settings.check('breadcrumbs' , 'fixed')}catch(e){}
+                </script>
+
+                <ul class="breadcrumb">
+                    <li>
+                        <i class="icon-home home-icon"></i>
+                    </li>
+                    <li class="active">添加用户</li>
+                </ul><!-- .breadcrumb -->
+
+            </div>
+            <!-- 内容区 -->
+            <div class="page-content">
+                <div class="row">
+                    <div class="col-md-12 col-sm-12 col-xs-12 con">
+                        <form id= "uploadForm" enctype="multipart/form-data" >
+                            <div class="c-con">
+                                <span class="text">头 像：</span>
+                                <img class="nav-user-photo" src="/images/avatar/boy.png" alt="User Photo" width="70" height="70" />
+                                <label for="inputFile" class="upfile">
+                                    <input type="file" id="inputFile" name="file"/>
+                                    <span class="custorm-style">
+											 <span class="left-button">上传头像</span>
+											 <span class="right-text" id="rightText"></span>
+							             </span>
+                                </label>
+                            </div>
+                            <input type="hidden" name="id" />
+                            <input type="hidden" name="photo" />
+                            <div class="c-con">
+                                <span class="text">昵 称：</span><input type="text" class="nickname" name="nickname" />
+                            </div>
+                            <div class="c-con">
+                                <span class="text">电 话：</span><input type="text" class="tel" name="tel" />
+                            </div>
+                            <div class="c-con">
+                                <span class="text">邮 箱：</span><input type="text" class="email" name="email" />
+                            </div>
+                            <div class="c-con">
+                                <span class="text">帐 号：</span><input type="text" class="user" name="user" />
+                                <span style="color:red">*</span>
+                            </div>
+                            <div class="c-con">
+                                <span class="text">密 码：</span><input type="text" class="password" name="password" />
+                                <span style="color:red">*</span>
+                                <span class="mingwen">加密</span>
+                                <span class="jiami hide">明文</span>
+                            </div>
+                            <div class="but">
+                                <input type="button" value="确定" class="queding" style="padding:0 20px" />
+                                <input type="reset" value="重置" class="chongzhi"  style="padding:0 20px"/>
+                            </div>
+                        </form>
+                    </div><!-- /.col -->
+                </div><!-- /.row -->
+            </div><!-- /.page-content -->
+        </div><!-- /.main-content -->
+
+
+        <div class="ace-settings-container" id="ace-settings-container">
+            <div class="btn btn-app btn-xs btn-warning ace-settings-btn" id="ace-settings-btn">
+                <i class="icon-cog bigger-150"></i>
+            </div>
+
+            <div class="ace-settings-box" id="ace-settings-box">
+                <div>
+                    <div class="pull-left">
+                        <select id="skin-colorpicker" class="hide">
+                            <option data-skin="default" value="#438EB9">#438EB9</option>
+                            <option data-skin="skin-1" value="#222A2D">#222A2D</option>
+                            <option data-skin="skin-2" value="#C6487E">#C6487E</option>
+                            <option data-skin="skin-3" value="#D0D0D0">#D0D0D0</option>
+                        </select>
+                    </div>
+                    <span>&nbsp; 选择皮肤</span>
+                </div>
+
+                <div>
+                    <input type="checkbox" class="ace ace-checkbox-2" id="ace-settings-rtl" />
+                    <label class="lbl" for="ace-settings-rtl"> 切换到左边</label>
+                </div>
+
+                <div>
+                    <input type="checkbox" class="ace ace-checkbox-2" id="ace-settings-add-container" />
+                    <label class="lbl" for="ace-settings-add-container">
+                        切换窄屏
+                    </label>
+                </div>
+            </div>
+        </div><!-- /#ace-settings-container -->
+    </div><!-- /.main-container-inner -->
+
+    <a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
+        <i class="icon-double-angle-up icon-only bigger-110"></i>
+    </a>
+</div><!-- /.main-container -->
+
+<!-- basic scripts -->
+
+
+<!--[if !IE]> -->
+
+<script type="text/javascript">
+    window.jQuery || document.write("<script src='/assets/js/jquery-2.0.3.min.js'>"+"<"+"/script>");
+</script>
+
+<!-- <![endif]-->
+
+<!--[if IE]>
+<script type="text/javascript">
+    window.jQuery || document.write("<script src='/assets/js/jquery-1.10.2.min.js'>"+"<"+"/script>");
+</script>
+<![endif]-->
+
+<script type="text/javascript">
+    if("ontouchend" in document) document.write("<script src='/assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
+</script>
+<script src="/assets/js/bootstrap.min.js"></script>
+<script src="/assets/js/typeahead-bs2.min.js"></script>
+
+<!-- page specific plugin scripts -->
+
+<!-- ace scripts -->
+
+<script src="/assets/js/ace-elements.min.js"></script>
+<script src="/assets/js/ace.min.js"></script>
+
+<!-- inline scripts related to this page -->
+<script src="/layer/layer.js"></script>
+<script src="/layer/layui/layui.js"></script>
+
+<script type="text/javascript">
+    jQuery(function($) {
+
+        window.prettyPrint && prettyPrint();
+        $('#id-check-horizontal').removeAttr('checked').on('click', function(){
+            $('#dt-list-1').toggleClass('dl-horizontal').prev().html(this.checked ? '&lt;dl class="dl-horizontal"&gt;' : '&lt;dl&gt;');
+        });
+
+    })
+    $('.mingwen').click(function(){
+        $('.password').attr('type','password');
+        $('.mingwen').addClass('hide');
+        $('.jiami').removeClass('hide');
+    });
+    $('.jiami').click(function(){
+        $('.password').attr('type','text');
+        $('.jiami').addClass('hide');
+        $('.mingwen').removeClass('hide');
+    });
+    $('.quxiao').click(function(){
+       window.location.href = '/admin/user';
+    });
+    var fileBtn = $("input[type=file]");
+    fileBtn.on("change", function(){
+        var index = $(this).val().lastIndexOf("\\");
+        var sFileName = $(this).val().substr((index+1));
+        $("#rightText").html(sFileName);
+    });
+    $('.queding').click(function () {
+        var regex = new RegExp(/^[0-9a-zA_Z]+$/);///^[0-9a-zA-Z]{8}$/ /^([a-z]|[A-Z]|[0-9]){8}$/
+        var regex1 = new RegExp(/^[a-zA-Z0-9\u4e00-\u9fa5]+$/);
+        var $name = $('.user').val();
+        var $psw = $('.password').val();
+        if($name.replace(/^ +| +$/g,'')=='') {
+            layer.msg('用户名不能为空', {
+                icon: 7, //1，绿勾  2，红叉  3，黄问号  4，灰色锁头  5，红色委屈脸  6，绿色笑脸 7，黄色感叹号
+                time: 1500
+            });
+            return;
+        }else if(!regex1.test($name)){
+            layer.msg('用户名格式错误(只能为中文、数字和字母)', {
+                icon: 7,
+                time: 1500
+            });
+            return;
+        }else if($psw.replace(/^ +| +$/g,'')==''){
+            layer.msg('密码不能为空',{
+                icon: 7,
+                time:1500
+            });
+            return;
+        }else if(!regex.test($psw)) {
+            layer.msg('密码格式错误(只能输入字母和数字)', {
+                icon: 7,
+                time: 1500
+            });
+            return;
+        }
+        var formData = new FormData($( "#uploadForm" )[0]);
+        $.ajax({
+            url: '/admin/addUser',
+            type: 'post',
+            data: formData,
+            async: true,
+            cache: false,
+            contentType: false,
+            processData: false,
+            success: function (data) {
+                if(data.result){
+                    layer.msg('用户名已存在',{
+                        icon: 5, //1，绿勾  2，红叉  3，黄问号  4，灰色锁头  5，红色委屈脸  6，绿色笑脸 7，黄色感叹号
+                        time:1500
+                    });
+                    return;
+                }
+                if(data.succ){
+                    layer.load(1);
+                    //此处演示关闭
+                    setTimeout(function(){
+                        layer.closeAll('loading');
+                    }, 500);
+                    setTimeout(function () {
+                        layer.msg('添加成功',{
+                            icon: 1, //1，绿勾  2，红叉  3，黄问号  4，灰色锁头  5，红色委屈脸  6，绿色笑脸 7，黄色感叹号
+                            time:1000
+                        });
+                    },1000);
+                    setTimeout(function () {
+                        window.location.href = '/admin/user';//刷新当前页面
+                    },2000);
+                }
+                if(data.err){
+                    layer.msg('发表失败',{
+                        icon: 2, //1，绿勾  2，红叉  3，黄问号  4，灰色锁头  5，红色委屈脸  6，绿色笑脸 7，黄色感叹号
+                        time:1000
+                    });
+                    setTimeout(function () {
+                        window.location.reload();//刷新当前页面
+                    },1500);
+                }
+            },
+            error: function (data) {
+                console.log('err:'+data);
+            }
+        });
+    })
+    function logout(){
+        $.cookie("login", "false", { expires: -1 });        // 删除 cookie
+        window.location.href = '/';
+    }
+</script>
+</body>
+</html>

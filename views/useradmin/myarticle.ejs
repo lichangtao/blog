@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<title>博雅楼 - 后台管理</title>
+		<meta name="keywords" content="" />
+		<meta name="description" content="" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="shortcut icon" href="/images/favicon.ico" />
+		<!-- basic styles -->
+		<link href="/assets/css/bootstrap.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="/assets/css/font-awesome.min.css" />
+		<link rel="stylesheet" type="text/css" href="/layer/layui/css/layui.css"  media="all" />
+		<!--[if IE 7]>
+		<link rel="stylesheet" href="/assets/css/font-awesome-ie7.min.css" />
+		<![endif]-->
+		<!-- page specific plugin styles -->
+		<link rel="stylesheet" href="/assets/css/personal.css" />
+		<!-- ace styles -->
+		<link rel="stylesheet" href="/assets/css/ace.min.css" />
+		<link rel="stylesheet" href="/assets/css/ace-rtl.min.css" />
+		<link rel="stylesheet" href="/assets/css/ace-skins.min.css" />
+		<!--[if lte IE 8]>
+		  <link rel="stylesheet" href="/assets/css/ace-ie.min.css" />
+		<![endif]-->
+		<script src="/assets/js/ace-extra.min.js"></script>
+		<!--[if lt IE 9]>
+		<script src="/assets/js/html5shiv.js"></script>
+		<script src="/assets/js/respond.min.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+		<div class="navbar navbar-default" id="navbar">
+			<script type="text/javascript">
+				try{ace.settings.check('navbar' , 'fixed')}catch(e){}
+			</script>
+
+			<div class="navbar-container" id="navbar-container">
+				<div class="navbar-header pull-left">
+					<a href="/" class="navbar-brand">
+						<small>
+							<i class="icon-home"></i>
+							博客首页
+						</small>
+					</a><!-- /.brand -->
+				</div><!-- /.navbar-header -->
+
+				<div class="navbar-header pull-right" role="navigation">
+					<ul class="nav ace-nav">
+
+						<li class="light-blue">
+							<a data-toggle="dropdown" href="#" class="dropdown-toggle">
+								<% if(user[0]['photo']){%>
+									<img class="nav-user-photo" src="<%= user[0]['photo'] %>" alt="User Photo" width="40" height="40"/>
+								<% }else{ %>
+									<img class="nav-user-photo" src="/images/avatar/boy.png" alt="User Photo" width="40" height="40" />
+                                <% } %>
+								<span class="user-info">
+									<small>Welcome,</small>
+									<%= user[0]['username'] %>
+								</span>
+
+								<i class="icon-caret-down"></i>
+							</a>
+
+							<ul class="user-menu pull-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
+
+								<li>
+									<a href="/logout">
+										<i class="icon-off"></i>
+                                        退出
+									</a>
+								</li>
+							</ul>
+						</li>
+					</ul><!-- /.ace-nav -->
+				</div><!-- /.navbar-header -->
+			</div><!-- /.container -->
+		</div>
+
+		<div class="main-container" id="main-container">
+			<script type="text/javascript">
+				try{ace.settings.check('main-container' , 'fixed')}catch(e){}
+			</script>
+
+			<div class="main-container-inner">
+				<a class="menu-toggler" id="menu-toggler" href="#">
+					<span class="menu-text"></span>
+				</a>
+
+				<div class="sidebar" id="sidebar">
+					<script type="text/javascript">
+						try{ace.settings.check('sidebar' , 'fixed')}catch(e){}
+					</script>
+
+
+					<ul class="nav nav-list">
+						<!--<li class="active">-->
+						<!--<a href="/useradmin">-->
+						<!--<i class="icon-dashboard"></i>-->
+						<!--<span class="menu-text"> 控制台 </span>-->
+						<!--</a>-->
+						<!--</li>-->
+
+						<li>
+							<a href="/useradmin" class="dropdown-toggle">
+								<i class="icon-user"></i>
+								<span class="menu-text"> 个人资料 </span>
+							</a>
+						</li>
+
+						<li>
+							<a href="/useradmin/myarticle" class="dropdown-toggle">
+								<i class="icon-book"></i>
+								<span class="menu-text"> 我的文章 </span>
+							</a>
+						</li>
+
+						<li>
+							<a href="/useradmin/mycomment" class="dropdown-toggle">
+								<i class="icon-comment"></i>
+								<span class="menu-text"> 我的评论 </span>
+							</a>
+						</li>
+
+						<li>
+							<a href="/useradmin/mycollect" class="dropdown-toggle">
+								<i class=" icon-heart"></i>
+								<span class="menu-text"> 我的收藏 </span>
+							</a>
+						</li>
+
+						<li>
+							<a href="/useradmin/mypraise" class="dropdown-toggle">
+								<i class=" icon-thumbs-up"></i>
+								<span class="menu-text"> 点赞记录 </span>
+							</a>
+						</li>
+
+					</ul><!-- /.nav-list -->
+
+					<div class="sidebar-collapse" id="sidebar-collapse">
+						<i class="icon-double-angle-left" data-icon1="icon-double-angle-left" data-icon2="icon-double-angle-right"></i>
+					</div>
+
+					<script type="text/javascript">
+						try{ace.settings.check('sidebar' , 'collapsed')}catch(e){}
+					</script>
+				</div>
+
+				<div class="main-content">
+					<div class="breadcrumbs" id="breadcrumbs">
+						<script type="text/javascript">
+							try{ace.settings.check('breadcrumbs' , 'fixed')}catch(e){}
+						</script>
+
+						<ul class="breadcrumb">
+							<li>
+								<i class="icon-home home-icon"></i>
+							</li>
+							<li class="active">我的文章</li>
+						</ul><!-- .breadcrumb -->
+
+					</div>
+					<!-- 内容区 -->
+					<div class="page-content">
+						<div class="row">
+							<div class="col-md-12 col-sm-12 col-xs-12 artl">
+								<form id= "uploadForm" enctype="multipart/form-data" >
+									<div class="table-responsive">
+										<table class="table table-striped table-hover">
+											<thead>
+											<tr>
+												<th>序号</th>
+												<th>标题</th>
+												<th>发布时间</th>
+												<th>封面</th>
+												<th>操作</th>
+											</tr>
+											</thead>
+											<tbody>
+                                            <% for(var i in art){ %>
+                                            <% i = Number(i); %>
+											<tr>
+												<th scope="row">  <%= i+1 %> </th>
+												<td><a href="/article/<%= art[i]['id']%>.html" target="_blank"> <%= art[i]['title'] %> </a> </td>
+												<td> <%= art[i]['time']%> </td>
+												<td>
+                                                    <% if(art[i]['img']){ %>
+													<img alt="" src="<%= art[i]['img']%>" width="100"/>
+                                                    <% } %>
+												</td>
+												<td>
+													<div class="layui-btn-group">
+														<a class="layui-btn" href="/useradmin/updateArticle?id=<%= art[i]['id']%>"><i class="layui-icon"></i></a>
+														<a class="layui-btn delete" pid="<%= art[i]['id']%>"><i class="layui-icon"></i></a>
+													</div>
+												</td>
+											</tr>
+                                            <% }%>
+											</tbody>
+										</table>
+									</div>
+									<a class="layui-btn" href="/useradmin/userAddArticle">
+										<i class="layui-icon">&#xe608;</i> 添加文章
+									</a>
+								</form>
+							</div><!-- /.col -->
+						</div><!-- /.row -->
+					</div><!-- /.page-content -->
+				</div><!-- /.main-content -->
+				
+
+				<div class="ace-settings-container" id="ace-settings-container">
+					<div class="btn btn-app btn-xs btn-warning ace-settings-btn" id="ace-settings-btn">
+						<i class="icon-cog bigger-150"></i>
+					</div>
+
+					<div class="ace-settings-box" id="ace-settings-box">
+						<div>
+							<div class="pull-left">
+								<select id="skin-colorpicker" class="hide">
+									<option data-skin="default" value="#438EB9">#438EB9</option>
+									<option data-skin="skin-1" value="#222A2D">#222A2D</option>
+									<option data-skin="skin-2" value="#C6487E">#C6487E</option>
+									<option data-skin="skin-3" value="#D0D0D0">#D0D0D0</option>
+								</select>
+							</div>
+							<span>&nbsp; 选择皮肤</span>
+						</div>
+
+						<div>
+							<input type="checkbox" class="ace ace-checkbox-2" id="ace-settings-rtl" />
+							<label class="lbl" for="ace-settings-rtl"> 切换到左边</label>
+						</div>
+
+						<div>
+							<input type="checkbox" class="ace ace-checkbox-2" id="ace-settings-add-container" />
+							<label class="lbl" for="ace-settings-add-container">
+								切换窄屏
+							</label>
+						</div>
+					</div>
+				</div><!-- /#ace-settings-container -->
+			</div><!-- /.main-container-inner -->
+
+			<a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
+				<i class="icon-double-angle-up icon-only bigger-110"></i>
+			</a>
+		</div><!-- /.main-container -->
+
+		<!-- basic scripts -->
+
+
+		<!--[if !IE]> -->
+
+		<script type="text/javascript">
+			window.jQuery || document.write("<script src='/assets/js/jquery-2.0.3.min.js'>"+"<"+"/script>");
+		</script>
+
+		<!-- <![endif]-->
+
+		<!--[if IE]>
+		<script type="text/javascript">
+		 window.jQuery || document.write("<script src='/assets/js/jquery-1.10.2.min.js'>"+"<"+"/script>");
+		</script>
+		<![endif]-->
+
+		<script type="text/javascript">
+			if("ontouchend" in document) document.write("<script src='/assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
+		</script>
+		<script src="/assets/js/bootstrap.min.js"></script>
+		<script src="/assets/js/typeahead-bs2.min.js"></script>
+
+		<!-- page specific plugin scripts -->
+
+		<!-- ace scripts -->
+
+		<script src="/assets/js/ace-elements.min.js"></script>
+		<script src="/assets/js/ace.min.js"></script>
+
+		<!-- inline scripts related to this page -->
+		<script src="/layer/layer.js"></script>
+		<script src="/layer/layui/layui.js"></script>
+		<script src="/js/jquery.cookie.js"></script>
+
+		<script type="text/javascript">
+			jQuery(function($) {
+			
+				window.prettyPrint && prettyPrint();
+				$('#id-check-horizontal').removeAttr('checked').on('click', function(){
+					$('#dt-list-1').toggleClass('dl-horizontal').prev().html(this.checked ? '&lt;dl class="dl-horizontal"&gt;' : '&lt;dl&gt;');
+				});
+			
+			})
+			$('.mingwen').click(function(){
+				$('.password').attr('type','text');
+				$('.mingwen').addClass('hide');
+				$('.jiami').removeClass('hide');
+			});
+			$('.jiami').click(function(){
+				$('.password').attr('type','password');
+				$('.jiami').addClass('hide');
+				$('.mingwen').removeClass('hide');
+			});
+			$('.xiugai').click(function(){
+				$('.value').attr('contentEditable','true').css({ 'border': '1px solid #6FB3E0' });
+				$('.xiugai').hide().siblings().show();
+				$('input').removeAttr('disabled');
+				$('.upfile').show();
+			});
+			var $nickname = $('.nickname').val();
+            var $tel = $('.tel').val();
+            var $email = $('.email').val();
+            var $user = $('.user').val();
+            var $password = $('.password').val();
+			$('.quxiao').click(function(){
+                $('.nickname').val($nickname);
+                $('.tel').val($tel);
+                $('.email').val($email);
+                $('.user').val($user);
+                $('.password').val($password);
+				$('.xiugai').show().siblings().hide();
+				$('input').attr('disabled',true);
+                $('.password').attr('type','password');
+                $('.jiami').addClass('hide');
+                $('.mingwen').removeClass('hide');
+                $('.upfile').hide();
+			});
+            var fileBtn = $("input[type=file]");
+                 fileBtn.on("change", function(){
+					 var index = $(this).val().lastIndexOf("\\");
+					 var sFileName = $(this).val().substr((index+1));
+					 $("#rightText").html(sFileName);
+            });
+			$('.queding').click(function () {
+                var formData = new FormData($( "#uploadForm" )[0]);
+                $.ajax({
+                    url: '/useradmin/updatepData' ,
+                    type: 'post',
+                    data: formData,
+                    async: true,
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    success: function (data) {
+                        if(data.result){
+                            layer.msg('修改成功',{
+                                icon: 1, //1，绿勾  2，红叉  3，黄问号  4，灰色锁头  5，红色委屈脸  6，绿色笑脸 7，黄色感叹号
+                                time:1000
+                            });
+                            setTimeout(function () {
+                                window.location.reload();//刷新当前页面
+                            },1500);
+						}
+                    },
+                    error: function (data) {
+                        console.log('err:'+data);
+                    }
+                });
+            })
+            function logout(){
+                $.cookie("login", "false", { expires: -1 });        // 删除 cookie
+                window.location.href = '/';
+            }
+            $('.delete').click(function () {
+                var pid = $(this).attr('pid');
+                layer.open({
+                    title: '提示',
+                    icon: 3,
+                    content: '确定删除么~~',
+                    btnAlign: 'c',
+                    yes: function(layero, index){
+                        $.ajax({
+                            url : '/useradmin/delArticle',
+                            type : 'post',
+                            dataType : 'json',
+                            data : {
+                                pid : pid
+                            },
+                            success(data){
+                                if(data.succ){
+                                    layer.msg('删除成功',{
+                                        icon: 1, //1，绿勾  2，红叉  3，黄问号  4，灰色锁头  5，红色委屈脸  6，绿色笑脸 7，黄色感叹号
+                                        time:1000
+                                    });
+                                    setTimeout(function () {
+                                        window.location.reload();//刷新当前页面
+                                    },1000)
+                                }
+                            },
+                            error(data){
+
+                            }
+                        })
+                    }
+                });
+            });
+		</script>
+</body>
+</html>

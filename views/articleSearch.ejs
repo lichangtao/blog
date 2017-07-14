@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>博雅楼</title>
+
+    <link rel="shortcut icon" href="/images/favicon.ico" />
+
+    <link rel="stylesheet" type="text/css" href="/css/style.css" />
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="/css/font-awesome.min.css" />
+    <link rel="stylesheet" type="text/css" href="/css/raleway.css" />
+    <link rel="stylesheet" type="text/css" href="/css/pacifico.css" />
+    <link rel="stylesheet" type="text/css" href="/css/source.css" />
+    <link rel="stylesheet" type="text/css" href="/css/screen.css" />
+    <link rel="stylesheet" type="text/css" href="/layer/layui/css/layui.css"  media="all" />
+
+    <script src="/js/jquery.js"></script>
+    <script src="/js/jquery.sticky.js"></script>
+    <script>
+        $(window).load(function(){
+            $("#menu").sticky({ topSpacing: 0 });
+        });
+    </script>
+</head>
+<body>
+<div class="container-fluid banner text-center" id="banner">
+    <div class="row">
+        <div class="col-md-12 line">
+            <div class="tablebox">
+                <div class="banner-text" id="bannertext">
+                    <h1 class="hostyle" id="heads">Welcome to Blog</h1>
+                    <p class="pstyle">Li Changtao</p>
+                    <a href="#features" class="page-scroll arrow"><i class="fa fa-angle-down"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="navbar menubar" id="menu">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle menu-button" data-toggle="collapse" data-target="#myNavbar">
+                <span class="glyphicon glyphicon-align-justify"></span>
+            </button>
+            <a class="navbar-brand logo" href="/">Blog</a>
+        </div>
+        <div>
+            <nav class="collapse navbar-collapse" id="myNavbar" role="navigation">
+                <ul class="nav navbar-nav navbar-right navstyle">
+                    <li><a href="/#features" class="page-scroll active">博客首页</a></li>
+                    <li><a href="#features" class="page-scroll">顶部</a></li>
+                    <li><a href="/#gallery" class="page-scroll">文章版块</a></li>
+                    <li><a href="/#about" class="page-scroll">留言板</a></li>
+                    <li><a href="/#testimonials" class="page-scroll">关于博主</a></li>
+                    <li><a href="/#contact" class="page-scroll">联系方式</a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</div>
+<div class="features" id="features">
+    <!-- start site's main content area -->
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+
+                <main class="col-md-8 main-content">
+                    <div class="article" style="padding:0;padding:5px 10px;">
+                        <img src="/images/blogmsg4.png" width="30"align="absmiddle"/>
+
+                        <span class="layui-breadcrumb" >
+                            <a style="font-size:22px; line-height:42px">文章搜索</a>
+                        </span>
+
+                    </div>
+
+                        <% for(var i in menu){ %>
+                             <div class="article">
+
+                        <!-- 标题 -->
+                        <div class="title">
+                            <span><img src="/images/art.png" width="20"/></span>
+                            <a href="/article/<%= menu[i]['id']%>.html" class="title-con" target="_blank"> <%= menu[i]['title']%> </a>
+                        </div>
+                        <!-- 封面 -->
+                        <div class="covers">
+                            <% if(  menu[i]['img']  ){ %>
+                            <a href="/article/<%= menu[i]['id']%>.html" target="_blank"><img src="<%= menu[i]['img'] %>" class="img-responsive" /></a>
+                            <% } %>
+                        </div>
+
+                        <!-- 概要 (可显示260-280个字符 5行)-->
+                        <% if(  menu[i]['abstract']  ){ %>
+                        <div class="outline">
+                            摘要：<span class="outline-con"> <%= menu[i]['abstract'] %> </span>
+                        </div>
+                        <% } %>
+
+
+                        <!-- 信息及标签 -->
+                        <div class="msg">
+                            <!-- 作者 -->
+                            <% if(menu[i]['author']){%>
+                                <img src="/images/avatar/author.png" width="15" /><span class="au"><a href="javascript:void(0)"> <%= menu[i]['author'] %> </a></span>
+                            <%} else if(menu[i]['nickname']){ %>
+                                <img src="/images/avatar/author.png" width="15" /><span class="au"><a href="javascript:void(0)"> <%= menu[i]['nickname'] %> </a></span>
+                            <% }else{ %>
+                                <img src="/images/avatar/author.png" width="15" /><span class="au"><a href="javascript:void(0)"> <%= menu[i]['username'] %> </a></span>
+                            <% } %>
+                            <!-- 日期 -->
+                            <img src="/images/avatar/time.png" width="15" /><span class="au"> <%= menu[i]['time']%> </span>
+                            <!-- 标签 -->
+                            <%  if(menu[i]['tag']){ %>
+                            <img src="/images/avatar/tag1.png" width="15" /><span class="au tag"><%= menu[i]['tag']%></span>
+                            <% } %>
+                            <!-- 点赞及评论 -->
+                            <!--<div class="comment hidden-xs">
+                                <span class="assist op" clicked="0"><a href="javascript:void(0)"><img src="/images/assist0.png" width="20" alt="点赞"  /></a>(<span class="a-count">3</span>)</span>
+                                <span class="comment-con"><a href="javascript:void(0)"><img src="/images/comment.png" width="20" alt="点赞" /></a>(<span  class="c-count">1</span>)</span>
+                            </div>-->
+                            <a href="/article/<%= menu[i]['id']%>.html" target="_blank">阅读全文</a>
+                        </div>
+
+                        <!-- 全文 -->
+
+
+                    </div>
+                    <%}%>
+
+
+                </main>
+
+                <aside class="col-md-4 sidebar hidden-xs hidden-sm">
+
+                    <!-- start tag cloud widget -->
+                    <div class="widget">
+                        <div class="log-img">
+                            <div class="log-img-worp hidden-xs">
+                                <div class="img"><img src="/images/blogmsg4.png" alt="博雅楼" width="80" height="80" /></div>
+                                <div class="font">
+                                    <h3>欢迎来到博雅楼</h3>
+                                    <p>修身 齐家 治国 平天下</p>
+                                </div>
+                            </div>
+                            <% if(locals.login){ %>
+                            <% if( user[0]['admin'] ){ %>
+                            <!--面板信息 -->
+                            <div class="log-umsg-worp">
+                                <div class="umsg-worp-avatar">
+                                    <a href="/admin">
+                                        <% if(user[0]['photo']){%>
+                                        <img src="<%= user[0]['photo'] %>" alt="User Photo" width="80" height="80"/>
+                                        <% }else{ %>
+                                        <img src="/images/avatar/boy.png" alt="User Photo" width="80" height="80" />
+                                        <% } %>
+                                    </a>
+                                </div>
+                                <div class="umsg-worp-name">
+                                            <span style="font-size:18px">
+                                                <img src="/images/avatar/1.png" alt="" width="24"  />
+                                            </span>
+                                    您好，管理员<a href="/admin">
+                                        <% if(user[0]['nickname']){ %>
+                                            <%= user[0]['nickname']%>
+                                        <% }else{ %>
+                                            <%= locals.login %>
+                                        <% } %>
+                                    </a>
+                                </div>
+                            </div>
+                            <% }else{ %>
+                            <!--面板信息 -->
+                            <div class="log-umsg-worp">
+                                <div class="umsg-worp-avatar">
+                                    <a href="/useradmin">
+                                        <% if(user[0]['photo']){%>
+                                        <img src="<%= user[0]['photo'] %>" alt="User Photo" width="80" height="80"/>
+                                        <% }else{ %>
+                                        <img src="/images/avatar/boy.png" alt="User Photo" width="80" height="80" />
+                                        <% } %>
+                                    </a>
+                                </div>
+                                <div class="umsg-worp-name">
+                                    <span style="font-size:18px"><img src="/images/avatar/1.png" alt="" width="24"  /></span>
+                                    您好，
+                                    <a href="/useradmin">
+                                        <% if(user[0]['nickname']){ %>
+                                            <%= user[0]['nickname']%>
+                                        <% }else{ %>
+                                             <%= locals.login %>
+                                        <% } %>
+                                    </a>
+                                </div>
+                            </div>
+                            <% } %>
+                            <% }else{ %>
+                            <!-- 登录框 -->
+                            <div class="log-login-worp">
+                                <div class="login-worp-left">
+                                    <a href="/login" class="layui-btn layui-btn-normal">登录</a>
+                                </div>
+                                <div class="login-worp-right">
+                                    <a href="/reg" class="layui-btn layui-btn-normal">注册</a>
+                                </div>
+                            </div>
+                            <% } %>
+
+                        </div>
+                    </div>
+                    <!-- end tag cloud widget -->
+
+                    <!-- start tag cloud widget -->
+                    <div class="widget">
+                        <h4 class="title">
+                            <span class="newtitle">文章搜索</span><img src="/images/search.png" width="26" style="margin:5px;" />
+                        </h4>
+                        <div class="content community">
+                            <div class="search">
+                                <form action="/search" method="get" class="form-inline" role="form" >
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" name="search" placeholder="请输入关键词" />
+                                    </div>
+                                    <input type="submit" value="搜索" class="btn btn-default" onclick="return check()" />
+                                    <span class="msg" style="display: none">请输入关键字进行搜索</span>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end tag cloud widget -->
+
+                    <!-- start widget -->
+                    <div class="widget">
+                        <h4 class="title">
+                            <span class="newtitle">最新评论</span><img src="/images/new.png" width="26" style="margin:5px;" />
+                        </h4>
+
+                        <div class="content comment">
+                            <% for(var i in comment){ %>
+                            <p><a href="/usermessage/<%= comment[i]['uid']%>.html" class="name aut">
+                                    <%if(comment[i]['nickname']){ %>
+                                    <%= comment[i]['nickname']%>
+                                    <% }else{ %>
+                                    <%= comment[i]['username']%>
+                                    <% }%>
+                                </a> 评论了
+                                <a href="/article/<%= comment[i]['aid']%>.html" class="name" target="_blank">《<%= comment[i]['title']%>》</a>                             </a>
+                            </p>
+                            <p class="comment-con">
+                                <% if(comment.length != 0){ %>
+                                <%- comment[i]['content'] %>
+                                <% } %>
+                            </p>
+                            <% } %>
+                        </div>
+                    </div>
+                    <!-- end widget -->
+                </aside>
+            </div>
+        </div>
+    </section>
+</div>
+
+
+<footer class="foot">
+    <div class="copyright">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <span>Copyright &copy; 2017</span> |
+                    <span>Power by LiChangtao</span> |
+                    <span><a href="http://www.miibeian.gov.cn/" target="_blank">桂ICP备16010724号</a></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/jquery.mixitup.js"></script>
+    <script src="/js/jquery.countTo.js"></script>
+    <script src="/js/jquery.waypoints.min.js"></script>
+    <script src="/js/jquery.quovolver.js"></script>
+    <script src="/layer/layer.js"></script>
+    <script src="/layer/layui/layui.js"></script>
+    <script>
+        $(function(){
+            $('#galleryimg').mixItUp();
+        });
+        jQuery(function ($) {
+            // custom formatting example
+            $('.timer').data('countToOptions', {
+                formatter: function (value, options) {
+                    return value.toFixed(options.decimals).replace(/\B(?=(?:\d{3})+(?!\d))/g, ',');
+                }
+            });
+            // start all the timers
+            $('#gallery').waypoint(function() {
+                $('.timer').each(count);
+            });
+            function count(options) {
+                var $this = $(this);
+                options = $.extend({}, options || {}, $this.data('countToOptions') || {});
+                $this.countTo(options);
+            }
+        });
+        $('.quotes').quovolver({
+            equalHeight   : true
+        });
+    </script>
+    <script type="text/javascript">
+
+        function onScroll(event){
+            var scrollPosition = $(document).scrollTop();
+            $('.nav li a').each(function () {
+                var currentLink = $(this);
+                var refElement = $(currentLink.attr("href"));
+                if (refElement.position().top <= scrollPosition && refElement.position().top + refElement.height() > scrollPosition) {
+                    $('.nav li a').removeClass("active");
+                    currentLink.addClass("active");
+                }
+                else{
+                    currentLink.removeClass("active");
+                }
+            });
+        }
+    </script>
+
+    <script src="/js/jquery.cookie.js"></script>
+    <script type="text/javascript">
+        /*退出*/
+        function logout(){
+            $.cookie("login", "false", { expires: -1 });        // 删除 cookie
+            window.location.reload();;
+        }
+        layui.use('element', function(){
+            var element = layui.element();
+        });
+    </script>
+
+</body>
+</html>

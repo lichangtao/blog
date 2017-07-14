@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="shortcut icon" href="/images/favicon.ico" />
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="/layer/layui/css/layui.css"  media="all" />
+</head>
+<body>
+    <form>
+        添加一级版块 <br/>
+        标题<input type="text" name="title" class="title"/><br />
+       <!-- 添加一级网址 <input type="text" name="furl" /><br />-->
+       <!-- 添加一级第几个显示 <input type="text" name="f_id" /><br />-->
+        <input type="button" class="submit" value="提交"/>
+    </form>
+    <br />
+    <form id= "uploadForm2" enctype="multipart/form-data">
+        添加二级版块 <br />
+        标题<input type="text" name="stitle" class="stitle"/><br />
+        封面<input type="file" id="inputFile" class="sfile" name="sfile" multiple="multiple" accept="image/png,image/jpeg" />
+        摘要<input type="text" name="sabs" class="sabs"/><br />
+        链接 <input type="text" name="surl" class="surl"/><br />
+       <!-- 添加二级第几个显示 <input type="text" name="s_id" /><br />-->
+        父级：<select name="leveid" class="leveid">
+                <% for(let i in data){ %>
+                    <option value="<%= data[i]['id'] %>"> <%= data[i]['title'] %> </option>
+                <% } %>
+             </select><br />
+        <input type="button" class="sbtn" value="提交"/>
+    </form>
+    <script src="/js/jquery.js"></script>
+    <script src="/layer/layer.js"></script>
+    <script src="/layer/layui/layui.js"></script>
+    <script>
+        $('.submit').click(function () {
+            if($('.title').val().length == 0){
+                layer.msg('请填写标题',{
+                    icon: 7, //1，绿勾  2，红叉  3，黄问号  4，灰色锁头  5，红色委屈脸  6，绿色笑脸 7，黄色感叹号
+                    time:1000
+                });
+                return;
+            }
+            $.ajax({
+                url : '/admin/menu',
+                type : 'post',
+                dataType : 'json',
+                data : {
+                    title : $('.title').val()
+                },
+                success(data){
+                    if(data.err){
+                        layer.msg('提交失败',{
+                            icon: 2, //1，绿勾  2，红叉  3，黄问号  4，灰色锁头  5，红色委屈脸  6，绿色笑脸 7，黄色感叹号
+                            time:1000
+                        });
+                        return;
+                    }
+                    if(data.succ){
+                        layer.msg('提交成功',{
+                            icon: 1, //1，绿勾  2，红叉  3，黄问号  4，灰色锁头  5，红色委屈脸  6，绿色笑脸 7，黄色感叹号
+                            time:1000
+                        });
+                        setTimeout(function () {
+
+                            window.location.reload();
+                        },1000)
+                    }
+                },
+                error(data){}
+            })
+        });
+        function chk() {
+            layer.msg('请填写内容！',{
+                icon: 7, //1，绿勾  2，红叉  3，黄问号  4，灰色锁头  5，红色委屈脸  6，绿色笑脸 7，黄色感叹号
+                time:1000
+            });
+        }
+        $('.sbtn').click(function () {
+            if($('.stitle').val().length == 0 || $('.sabs').val().length == 0 || $('.surl').val().length == 0){
+                chk();
+                return;
+            }
+            var formData2 = new FormData($( "#uploadForm2" )[0]);
+            $.ajax({
+                url : '/admin/smenu',
+                type : 'post',
+                data: formData2,
+                async: true,
+                cache: false,
+                contentType: false,
+                processData: false,
+               /* data : {
+                    stitle : $('.stitle').val(),
+                    leveid : $('.leveid').val(),
+                    sabs : $('.sabs').val(),
+                    surl : $('.surl').val()
+                },*/
+                success(data){
+                    if(data.err){
+                        layer.msg('提交失败',{
+                            icon: 2, //1，绿勾  2，红叉  3，黄问号  4，灰色锁头  5，红色委屈脸  6，绿色笑脸 7，黄色感叹号
+                            time:1000
+                        });
+                        return;
+                    }
+                    if(data.succ){
+                        layer.msg('提交成功',{
+                            icon: 1, //1，绿勾  2，红叉  3，黄问号  4，灰色锁头  5，红色委屈脸  6，绿色笑脸 7，黄色感叹号
+                            time:1000
+                        });
+                        setTimeout(function () {
+
+                            window.location.reload();
+                        },1000)
+                    }
+                },
+                error(data){}
+            })
+        });
+    </script>
+</body>
+</html>

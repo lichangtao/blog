@@ -1,0 +1,281 @@
+.con{
+	margin-top: 30px;
+}
+.con .c-con{
+	width: 80%;
+	line-height: 78px;
+	border-bottom: 1px solid #ddd;
+	margin: 0 auto;
+}
+.con .c-con .text{	
+	font-size: 15px;
+	color: #9a9a9a;
+	margin-right: 40px;
+}
+.con .c-con .value {
+	width: 190px;
+	padding: 8px 14px;
+	line-height: 24px;
+	display: inline-block;
+}
+.con .c-con .value input{
+	border: none;
+	background: #fff;
+}
+.con .c-con .hide{
+	display: none;
+}
+.con .c-con .mingwen,.con .c-con .jiami{
+	cursor: pointer;
+}
+.con .c-con img{
+	border-radius: 100%;
+}
+.dropdown-toggle img{
+	border-radius: 100%;
+}
+.con .but{
+	width: 80%;
+	line-height: 40px;
+	margin: 30px auto;
+}
+.con .but button.xiugai{
+	border: 1px solid #0099ff;
+	background: #0099ff;
+	color: #fff;
+	padding:0 6px;
+}
+.con .but input.chongzhi{
+	border: 1px solid #ffcc99;
+	background: #ffcc99;
+	color: #fff;
+}
+.con .but input.queding{
+	border: 1px solid #0099ff;
+	background: #0099ff;
+	color: #fff;
+}
+.con .but button.quxiao{
+	border: 1px solid #cfcfcf;
+	background: #cfcfcf;
+	color: #fff;
+}
+.con label{
+	display: inline-block;
+	position: relative;
+	margin: 10px 0 0 20px;
+	line-height: 40px;
+}
+input[type="file"]{
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	clip:rect(0,0,0,0);
+}
+.custorm-style{
+	display: block;
+	width: 200px;
+	height: 50px;
+	font-weight: normal;
+}
+.custorm-style .left-button{
+	width: 60px;
+	line-height: 40px;
+	background: #008ac7;
+	color: #fff;
+	display: block;
+	text-align: center;
+	float: left;
+}
+.custorm-style .right-text{
+	width: 130px;
+	height: 40px;
+	line-height: 40px;
+	display: block;
+	float: left;
+	padding: 4px;
+	border: 1px solid #008ac7;
+	overflow: hidden;
+	-ms-text-overflow: ellipsis;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+/*评论*/
+.coll{
+	width: 100%;
+	height: auto;
+	margin: 20px auto;
+}
+.coll table.table th{
+	height: 40px;
+	line-height: 40px;
+}
+.coll table.table tr{
+	height: 40px;
+	line-height: 40px;
+}
+
+.coll table.table .thead tr{
+	background: #FFD090;
+	border: 1px solid #FFD090;
+	color: #fff;
+}
+.comm table.table .thead tr{
+	background: #54BAF1;
+	border: 1px solid #54BAF1;
+	color: #fff;
+}
+.pra table.table .thead tr{
+	background: #00CC99;
+	border: 1px solid #00CC99;
+	color: #fff;
+}
+.coll table.table tbody.tbody tr{
+	border-bottom: 1px solid #ddd;
+}
+.table thead>tr>th, .table tbody>tr>th, .table tfoot>tr>th, .table thead>tr>td, .table tbody>tr>td, .table tfoot>tr>td{
+	border-top: none;
+	padding: 8px;
+	line-height: 2;
+}
+.coll table.table tbody.tbody tr td a{
+	color: #FFD090;
+}
+.pra table.table tbody.tbody tr td a{
+	color: #00CC99;
+}
+.comm table.table tbody.tbody tr td.aut{
+	max-width: 125px;
+	display:block;
+	white-space:nowrap;
+	overflow:hidden;
+	text-overflow:ellipsis;
+}
+.comm table.table tbody.tbody tr td a.title{
+	color: #54BAF1;
+	max-width: 245px;
+	display:block;
+	white-space:nowrap;
+	overflow:hidden;
+	text-overflow:ellipsis;
+}
+.comm table.table tbody.tbody tr td a.com{
+	max-width: 330px;
+	color: #54BAF1;
+	display:block;
+	white-space:nowrap;
+	overflow:hidden;
+	text-overflow:ellipsis;
+}
+
+/*用户信息*/
+.table thead tr th,.table tbody tr td,.table tbody tr th{
+	text-align: center;
+}
+.user table tbody tr td img{
+	border-radius: 100%;
+}
+.con .c-con input.t{
+	width: 40%;
+	height: 40px;
+	border: none;
+	border-bottom: 1px solid #ddd;
+}
+
+/*发表文章*/
+.art{
+	margin: 20px auto;
+}
+.art .form-group input {
+	border-radius: 3px;
+	height: 40px;
+}
+.art .form-group label{
+	font-weight: bold;
+}
+.art .form-group .tip{
+	color: #bdbdbd;
+}
+.art .form-submit .submit{
+	border: 1px solid #54BAF1;
+	padding: 10px 16px;
+	color: #fff;
+	background: #54BAF1;
+	display: block;
+	margin: 50px auto;
+}
+.art .form-submit .submit:hover{
+	background: #1296DB;
+	border: 1px solid #1296DB;
+}
+/*文章列表*/
+.artl{
+	width: 100%;
+	height: auto;
+	margin: 30px auto;
+}
+.artl .page{
+	border-bottom: 1px solid #ddd;
+	margin: 0 auto;
+	text-align: center;
+}
+.artl a.add{
+	display: block;
+	padding: 10px;
+}
+
+	/*评论列表*/
+.page-content .com table.table tbody.tb tr td.tit{
+	white-space:nowrap;
+	overflow:hidden;
+	text-overflow:ellipsis;
+	max-width:200px;
+}
+.page-content .com table.table tbody.tb tr.tr td.con{
+	color: #54BAF1;
+	white-space:nowrap;
+	overflow:hidden;
+	text-overflow:ellipsis;
+	max-width:260px;
+}
+
+/*添加板块*/
+.y{
+	font-size: 17px;
+	font-weight: bold;
+}
+.b{
+	display: inline-block;
+	width: 60px;
+	line-height: 30px;
+	font-size: 16px;
+}
+.ti1{
+	width:40%;
+	height: 37px;
+	border-radius: 3px;
+}
+p.q{
+	margin-bottom:10px
+}
+.q .la{
+	margin: 10px 0 0 0 ;
+	width:30%;
+}
+.custorm-style .ri{
+	width: 133px;
+	height: 40px;
+	line-height: 40px;
+	display: block;
+	float: left;
+	padding: 4px;
+	border: 1px solid #008ac7;
+	overflow: hidden;
+	-ms-text-overflow: ellipsis;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+.con11{
+	padding:40px 0 160px 40px;
+}

@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    请求页面不存在oooooooooooo！系统将在
+    <span id="time">5</span> 秒钟后自动跳转至首页，如果未能跳转，<a href="/" title="点击访问">请点击</a>
+    <script type="text/javascript">
+        delayURL();
+        function delayURL() {
+            var delay = document.getElementById("time").innerHTML;
+            var t = setTimeout("delayURL()", 1000);
+            if (delay > 0) {
+                delay--;
+                document.getElementById("time").innerHTML = delay;
+            } else {
+                clearTimeout(t);
+                window.location.href = "/";
+            }
+        }
+    </script>
+</body>
+</html>

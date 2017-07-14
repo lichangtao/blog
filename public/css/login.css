@@ -1,0 +1,28 @@
+
+*{ margin: 0; padding: 0; }
+html{}
+body{background:url("../img/bg.jpg") no-repeat;font-family:'Microsoft Yahei'}
+a{text-decoration:none;}
+.login{width:400px;height:300px;background:#fdfdfd;margin:100px auto;}
+.container{width:350px;height:40px;margin:18px auto;}
+.container1{width:350px;height:15px;margin:10px auto;}
+.container1 label{font-size:14px;color:#000;}
+.container1 label:hover{color:#666;}
+.container1 .right a{color:#999;float: right;}
+.container1 .right a:hover{color:#000;}
+.login_title{font-size:24px;padding-top:10px;padding-left: 20px;}
+.user_name_logo{width:38px;height:38px;background:url("../img/icons.png") no-repeat;border:1px solid #ddd;display: block;float: left;}
+.user_password_logo{width:38px;height:38px;background:url("../img/icons.png") no-repeat -48px 0;;border:1px solid #ddd;display: block;float: left;}
+div.container input{width:290px;height:38px;border:1px solid #ddd;background:#fdfdfd;border-left:none;font-size:16px;padding-left: 10px;outline:none;}
+div.focus span{border:1px solid rgb(132, 188, 223)}
+div.focus span.user_name_logo{background-position:0px -48px;}
+div.focus span.user_password_logo{background-position:-48px -48px;}
+div.focus input{border:1px solid rgb(132, 188, 223);border-left:none}
+div.error span{border:1px solid rgb(228, 132, 133)}
+div.error span.user_name_logo{background-position:0px -96px;}
+div.error span.user_password_logo{background-position:-48px -96px;}
+div.error input{border:1px solid rgb(228, 132, 133);border-left:none}
+#submit{width:350px;height:40px;background:#e67e22;color:#f6f6f6;font-size:20px;}
+.prompt{ width:100%;height:20px;font-size:14px;padding-left:24px;color:#666; }
+.prompt a{ color:#000; }
+.prompt a:hover{ text-decoration: underline; }

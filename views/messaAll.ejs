@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>博雅楼</title>
+
+    <link rel="shortcut icon" href="/images/favicon.ico" />
+
+    <link rel="stylesheet" type="text/css" href="/css/style.css" />
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="/css/font-awesome.min.css" />
+    <link rel="stylesheet" type="text/css" href="/css/raleway.css" />
+    <link rel="stylesheet" type="text/css" href="/css/pacifico.css" />
+    <link rel="stylesheet" type="text/css" href="/css/source.css" />
+    <link rel="stylesheet" type="text/css" href="/css/screen.css" />
+    <link rel="stylesheet" type="text/css" href="/layer/layui/css/layui.css"  media="all" />
+
+    <!-- 评论表情 -->
+    <link rel="stylesheet" href="/emoji/dist/css/jquery.emoji.css"/>
+    <link rel="stylesheet" href="/emoji/dist/css/index.css"/>
+
+    <link rel="stylesheet" type="text/css" href="/css/article_detail.css" />
+    <script src="/js/jquery.js"></script>
+    <script src="/js/jquery.sticky.js"></script>
+    <script>
+        $(window).load(function(){
+            $("#menu").sticky({ topSpacing: 0 });
+        });
+    </script>
+</head>
+<body>
+<div class="container-fluid banner text-center" id="banner">
+    <div class="row">
+        <div class="col-md-12 line">
+            <div class="tablebox">
+                <div class="banner-text" id="bannertext">
+                    <h1 class="hostyle" id="heads">Welcome to Blog</h1>
+                    <p class="pstyle">Li Changtao</p>
+                    <a href="#features" class="page-scroll arrow"><i class="fa fa-angle-down"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="navbar menubar" id="menu">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle menu-button" data-toggle="collapse" data-target="#myNavbar">
+                <span class="glyphicon glyphicon-align-justify"></span>
+            </button>
+            <a class="navbar-brand logo" href="/">Blog</a>
+        </div>
+        <div>
+            <nav class="collapse navbar-collapse" id="myNavbar" role="navigation">
+                <ul class="nav navbar-nav navbar-right navstyle">
+                    <li><a href="/#features" class="page-scroll active">首页</a></li>
+                    <li><a href="#features" class="page-scroll">顶部</a></li>
+                    <li><a href="/#gallery" class="page-scroll">文章版块</a></li>
+                    <li><a href="/#about" class="page-scroll">留言板</a></li>
+                    <li><a href="/#testimonials" class="page-scroll">关于博主</a></li>
+                    <li><a href="/#contact" class="page-scroll">联系方式</a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</div>
+<div class="features" id="features">
+    <!-- start site's main content area -->
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+
+                <main class="col-md-8 main-content">
+                    <div class="article">
+                        <!--评论楼层-->
+                        <div class="commfloor">
+                            <p class="t"><span class="tit">网友评论</span></p>
+                            <% for(var i in comment){ %>
+                                <% if(comment.length != 0){ %>
+                                <div class="con" style="padding:20px 10px">
+
+                                    <!-- 楼层数及发表时间 hidden-sm hidden-md hidden-lg-->
+                                    <div class="floor1">
+                                        <% i = Number(i); %>
+                                        <i class="number"> <%= i+1 %> </i>楼 &nbsp;<span class="" style="display:inline-block"> <%= comment[i]['name']%> </span>
+                                        <span class="time">  <%= comment[i]['time'] %>  </span>
+                                    </div>
+                                    <!-- 内容 -->
+                                    <div class="c-con"> <%- comment[i]['content'] %> </div>
+                                    <div style="clear:both;"></div>
+                                </div>
+                                <% } %>
+                            <% } %>
+                        </div>
+                        <div style="clear:both;"></div>
+                        <!-- 分页 -->
+                        <nav class="pagination" role="navigation">
+                            <div class="pages">
+                                <nav aria-label="..." style="background: #fff;">
+                                    <ul class="pagination">
+                                        <li class=""><a href="/messageAll/list-1.html">首页 <span class="sr-only">(current)</span></a></li>
+                                        <% for(var i=0 ; i < page.length/15 ;i++){ %>
+                                        <li class=""><a href="/messageAll/list-<%= i+1 %>.html"> <%= i+1 %> <span class="sr-only">(current)</span></a></li>
+                                        <% } %>
+                                        <li class=""><a href="/messageAll/list-<%= Math.ceil(page.length/15) %>.html">末页 <span class="sr-only">(current)</span></a></li>
+                                    </ul>
+                                </nav>
+                            </div>
+                        </nav>
+                    </div>
+                </main>
+
+                <aside class="col-md-4 sidebar hidden-xs hidden-sm">
+                    <!-- start tag cloud widget -->
+                    <div class="widget">
+                        <div class="log-img">
+                            <div class="log-img-worp">
+                                <div class="img"><img src="/images/blogmsg4.png" alt="博学楼" width="80" height="80" /></div>
+                                <div class="font">
+                                    <h3>欢迎来到博雅楼</h3>
+                                    <p>修身 齐家 治国 平天下</p>
+                                </div>
+                            </div>
+                            <% if(locals.login){ %>
+                            <% if( user[0]['admin'] ){ %>
+                                <!--面板信息 -->
+                                <div class="log-umsg-worp">
+                                <div class="umsg-worp-avatar">
+                                    <a href="/admin">
+                                        <% if(user[0]['photo']){%>
+                                        <img src="<%= user[0]['photo'] %>" alt="User Photo" width="80" height="80"/>
+                                        <% }else{ %>
+                                        <img src="/images/avatar/boy.png" alt="User Photo" width="80" height="80" />
+                                        <% } %>
+                                    </a>                                </div>
+                                <div class="umsg-worp-name">
+                                    <span style="font-size:18px"><img src="/images/avatar/1.png" alt="" width="24"  /></span>
+                                    <a href="/admin">
+                                        <% if(user[0]['nickname']){ %>
+                                            <%= user[0]['nickname']%>
+                                        <% }else{ %>
+                                            <%= locals.login %>
+                                        <% } %>
+                                    </a>
+                                </div>
+                            </div>
+                            <% }else{ %>
+                                <!--面板信息 -->
+                                <div class="log-umsg-worp">
+                                <div class="umsg-worp-avatar">
+                                    <a href="/useradmin">
+                                        <% if(user[0]['photo']){%>
+                                        <img src="<%= user[0]['photo'] %>" alt="User Photo" width="80" height="80"/>
+                                        <% }else{ %>
+                                        <img src="/images/avatar/boy.png" alt="User Photo" width="80" height="80" />
+                                        <% } %>
+                                    </a>                                </div>
+                                <div class="umsg-worp-name">
+                                    <span style="font-size:18px"><img src="/images/avatar/1.png" alt="" width="24"  /></span>
+                                    <a href="/useradmin">
+                                        <% if(user[0]['nickname']){ %>
+                                            <%= user[0]['nickname']%>
+                                        <% }else{ %>
+                                            <%= locals.login %>
+                                        <% } %>
+                                    </a>
+                                </div>
+                            </div>
+                            <% } %>
+                            <% }else{ %>
+                            <!-- 登录框 -->
+                            <div class="log-login-worp">
+                                <div class="login-worp-left">
+                                    <a href="/login" class="layui-btn layui-btn-normal">登录</a>
+                                </div>
+                                <div class="login-worp-right">
+                                    <a href="/reg" class="layui-btn layui-btn-normal">注册</a>
+                                </div>
+                            </div>
+                            <% } %>
+                        </div>
+                    </div>
+                    <!-- end tag cloud widget -->
+
+                    <!-- start tag cloud widget -->
+                    <div class="widget">
+                        <h4 class="title">
+                            <span class="newtitle">最新评论</span><img src="/images/new.png" width="26" style="margin:5px;" />
+                        </h4>
+                        <div class="content comment">
+                            <% for(var i in commentdata){ %>
+                            <p><a href="javascript:void(0)" class="name aut">
+                                    <%if(commentdata[i]['nickname']){ %>
+                                         <%= commentdata[i]['nickname']%>
+                                    <% }else{ %>
+                                         <%= commentdata[i]['username']%>
+                                    <% }%>
+                                </a> 评论了
+                                <a href="/article/<%= commentdata[i]['aid']%>.html" class="name"> 《<%= commentdata[i]['title']%>》 </a>
+                            </p>
+                            <p class="comment-con">
+                                <% if(commentdata.length != 0){ %>
+                                     <%- commentdata[i]['content'] %>
+                                <% } %>
+                            </p>
+                            <% } %>
+                        </div>
+                    </div>
+                    <!-- end tag cloud widget -->
+
+                    <!-- start widget -->
+                    <div class="widget">
+                        <h4 class="title">
+                            <span class="newtitle">最新文章</span><img src="/images/new.png" width="26" style="margin:5px;" />
+                            <span class="more"><a href="/article/list-1.html">更多</a></span>
+                        </h4>
+                        <div class="content">
+                            <% for(var i in dataall){ %>
+                            <p><a href="/article/<%= dataall[i]['id']%>.html">  <%= dataall[i]['title']%> </a></p>
+                            <% } %>
+                        </div>
+                    </div>
+                    <!-- end widget -->
+                </aside>
+
+            </div>
+        </div>
+    </section>
+</div>
+
+
+<footer class="foot">
+    <div class="copyright">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <span>Copyright &copy; 2017</span> |
+                    <span>Power by LiChangtao</span> |
+                    <span><a href="http://www.miibeian.gov.cn/" target="_blank">桂ICP备16010724号</a></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/jquery.mixitup.js"></script>
+    <script src="/js/jquery.countTo.js"></script>
+    <script src="/js/jquery.waypoints.min.js"></script>
+    <script src="/js/jquery.quovolver.js"></script>
+    <script src="/layer/layer.js"></script>
+    <script src="/layer/layui/layui.js"></script>
+    <script>
+        $(function(){
+            $('#galleryimg').mixItUp();
+        });
+        jQuery(function ($) {
+            // custom formatting example
+            $('.timer').data('countToOptions', {
+                formatter: function (value, options) {
+                    return value.toFixed(options.decimals).replace(/\B(?=(?:\d{3})+(?!\d))/g, ',');
+                }
+            });
+            // start all the timers
+            $('#gallery').waypoint(function() {
+                $('.timer').each(count);
+            });
+            function count(options) {
+                var $this = $(this);
+                options = $.extend({}, options || {}, $this.data('countToOptions') || {});
+                $this.countTo(options);
+            }
+        });
+        $('.quotes').quovolver({
+            equalHeight   : true
+        });
+    </script>
+    <script>
+        function onScroll(event){
+            var scrollPosition = $(document).scrollTop();
+            $('.nav li a').each(function () {
+                var currentLink = $(this);
+                var refElement = $(currentLink.attr("href"));
+                if (refElement.position().top <= scrollPosition && refElement.position().top + refElement.height() > scrollPosition) {
+                    $('.nav li a').removeClass("active");
+                    currentLink.addClass("active");
+                }
+                else{
+                    currentLink.removeClass("active");
+                }
+            });
+        }
+    </script>
+    <!-- 分页 -->
+
+    <script>
+        /*/!*点赞只能点一次*!/
+        $('.op').on('click',function(){
+            var $this = $(this);
+            if($this.attr("clicked") == "0"){
+                $this.attr("clicked","1");
+                $this.text('已赞');
+                layer.msg('好文章赞一个~',{
+                    icon: 1,
+                    time:1000
+                });
+            }else{
+                layer.msg('你已经赞过了',{
+                    icon: 6,
+                    time:1000
+                });
+                return;
+            }
+        });*/
+        /*评论提交*/
+        $('.con').keyup(function () {
+            var $this = $(this);
+            var textlen = $this.text().length;//不包含表情
+            if(textlen > 150){
+                $this.text($this.text().substring(0,150));
+            }
+        })
+
+        $('.send').click(function () {
+
+            /*console.log(text);
+            console.log(text.length);
+            if( html.indexOf("emoji_icon") > 0 ){
+                len += 1;
+            }
+            alert(len);*/
+            var $editor = $('#editor');
+            var html = $editor.html();
+
+            if( html.replace(/(^\s*)|(\s*$)/g, "")=="" ){
+                layer.msg('请填写评论内容', {
+                    icon: 3, //1，绿勾  2，红叉  3，黄问号  4，灰色锁头  5，红色委屈脸  6，绿色笑脸 7，黄色感叹号
+                    skin: 'layer-ext-moon',
+                    time : '1000'
+                })
+                return;
+            }
+            html = html.replace(/[ | ]*\n/g, ''); //去除行尾空白
+            html = html.replace(/&nbsp;/ig, ''); //去掉尾部空格
+
+/*          var $this = $(this);
+            console.log('按键按下');
+            var str = $this.html();
+            if(str.indexOf("emoji_icon") > 0 ){
+                str = str.replace(/<\/?[^>]*>/g, ''); //去除HTML tag
+                str = str.replace(/[ | ]*\n/g, ''); //去除行尾空白
+                str = str.replace(/&nbsp;/ig, ''); //去掉尾部空格
+                console.log(str);
+                console.log(str.length+1);
+            }else{
+                console.log('--------');
+                str = str.replace(/[ | ]*\n/g, ''); //去除行尾空白
+                str = str.replace(/&nbsp;/ig, ''); //去掉尾部空格
+                console.log(str);
+                console.log(str.length);
+            }*/
+
+            $.ajax({
+                url : '',
+                type : 'post',
+                dataType : 'json',
+                data:{
+                    content : html
+                },
+                success (data){
+                    if(data.unlog){
+                        layer.msg('请先登录',{
+                            icon: 4, //1，绿勾  2，红叉  3，黄问号  4，灰色锁头  5，红色委屈脸  6，绿色笑脸 7，黄色感叹号
+                            time:1000
+                        });
+                    }
+                    if(data.err){
+                        layer.msg('发生错误',{
+                            icon: 5, //1，绿勾  2，红叉  3，黄问号  4，灰色锁头  5，红色委屈脸  6，绿色笑脸 7，黄色感叹号
+                            time:1000
+                        });
+                    }
+                    if(data.succ){
+                        layer.msg('评论成功', {
+                            icon: 1, //1，绿勾  2，红叉  3，黄问号  4，灰色锁头  5，红色委屈脸  6，绿色笑脸 7，黄色感叹号
+                            time: 1000
+                        });
+                        setTimeout(function () {
+                            window.location.reload();//刷新当前页面
+                        },1000);
+                    }
+                    // window.location.replace('/reg');//跳转到指定路径
+                },
+                error (data){
+                    layer.msg('sorry~~ 评论失败');
+                    setTimeout(function () {
+                        window.location.reload();//刷新当前页面
+                    },1500);
+                }
+            })
+        });
+
+    </script>
+    <script src="/emoji/lib/script/highlight.pack.js"></script>
+    <script src="/emoji/lib/script/jquery.mousewheel-3.0.6.min.js"></script>
+    <script src="/emoji/lib/script/jquery.mCustomScrollbar.min.js"></script>
+    <script src="/emoji/dist/js/jquery.emoji.min.js"></script>
+    <script src="/js/jquery.cookie.js"></script>
+    <script>
+
+        /*退出*/
+        function logout(){
+            $.cookie("login", "false", { expires: -1 });        // 删除 cookie
+            window.location.reload();
+        }
+        /*收藏*/
+        $('.shoucang').click(function () {
+            var $this = $(this);
+            var pid = $this.attr('pid');
+            var uid = $this.attr('uid');
+            $.ajax({
+                url : '/useradmin/collectArticle',
+                type : 'post',
+                dataType : 'json',
+                data : {
+                    pid : pid,
+                    uid : uid
+                },
+                success(data){
+                    if(data.res){
+                        layer.msg('您已经收藏过了',{
+                            icon: 6, //1，绿勾  2，红叉  3，黄问号  4，灰色锁头  5，红色委屈脸  6，绿色笑脸 7，黄色感叹号
+                            time:1000
+                        });
+                        return;
+                    }
+                    if(data.succ){
+                        layer.msg('收藏成功',{
+                            icon: 1, //1，绿勾  2，红叉  3，黄问号  4，灰色锁头  5，红色委屈脸  6，绿色笑脸 7，黄色感叹号
+                            time:1000
+                        });
+                        setTimeout(function () {
+                            window.location.reload();//刷新当前页面
+                        },1000)
+                    }
+                    if(data.err){
+                        layer.msg('发生错误',{
+                            icon: 7, //1，绿勾  2，红叉  3，黄问号  4，灰色锁头  5，红色委屈脸  6，绿色笑脸 7，黄色感叹号
+                            time:1000
+                        });
+                    }
+                },
+                error(data){
+
+                }
+            })
+        });
+        /*点赞*/
+        $('.zan').click(function () {
+            var $this = $(this);
+            var pid = $this.attr('pid');
+            var uid = $this.attr('uid');
+            $.ajax({
+                url : '/useradmin/praiseArticle',
+                type : 'post',
+                dataType : 'json',
+                data : {
+                    pid : pid,
+                    uid : uid
+                },
+                success(data){
+                    if(data.res){
+                        layer.msg('您已经赞过了',{
+                            icon: 6, //1，绿勾  2，红叉  3，黄问号  4，灰色锁头  5，红色委屈脸  6，绿色笑脸 7，黄色感叹号
+                            time:1000
+                        });
+                        return;
+                    }
+                    if(data.succ){
+                        layer.msg('好文章赞一个',{
+                            icon: 1, //1，绿勾  2，红叉  3，黄问号  4，灰色锁头  5，红色委屈脸  6，绿色笑脸 7，黄色感叹号
+                            time:1000
+                        });
+                        setTimeout(function () {
+                            window.location.reload();//刷新当前页面
+                        },1000)
+                    }
+                    if(data.err){
+                        layer.msg('发生错误',{
+                            icon: 7, //1，绿勾  2，红叉  3，黄问号  4，灰色锁头  5，红色委屈脸  6，绿色笑脸 7，黄色感叹号
+                            time:1000
+                        });
+                    }
+                },
+                error(data){
+
+                }
+            })
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,8 @@
+
+.main-navigation .menu li.nav-current {
+    border-bottom: none;
+}
+.main-navigation .menu li.about {
+    border-bottom: 2px solid #e67e22;
+    margin-bottom: -2px;
+}
